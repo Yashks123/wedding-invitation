@@ -30,7 +30,7 @@ WEDDING = {
         "and would be honored to have you with us."
     ),
 
-    "map_url": "https://maps.google.com/",
+    "map_url": "https://maps.app.goo.gl/vbECqUR4dPfENbQ1A?g_st=aw",
 
     "events": [
         {
