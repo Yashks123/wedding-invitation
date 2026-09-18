@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -10,18 +11,44 @@
         content="width=device-width, initial-scale=1.0"
     >
 
+    <meta
+        name="theme-color"
+        content="#2a1816"
+    >
+
     <title>
         {{ wedding.bride }} & {{ wedding.groom }}
     </title>
 
+
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
+
     <link
-        rel="stylesheet"
-        href="{{ url_for('static', filename='css/style.css') }}"
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
     >
 
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap"
         rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
     >
 
 </head>
@@ -34,7 +61,11 @@
      MUSIC
 ========================================================= -->
 
-<audio id="weddingMusic" loop>
+<audio
+    id="weddingMusic"
+    loop
+    preload="auto"
+>
 
     <source
         src="{{ url_for('static', filename='music/wedding.mp3') }}"
@@ -44,10 +75,14 @@
 </audio>
 
 
+<!-- =========================================================
+     MUSIC BUTTON
+========================================================= -->
+
 <button
     class="music-button"
-    onclick="toggleMusic()"
     id="musicButton"
+    onclick="toggleMusic()"
 >
     ♪
 </button>
@@ -55,41 +90,112 @@
 
 
 <!-- =========================================================
-     HERO
+     OPENING SCREEN
 ========================================================= -->
 
-<section class="hero">
+<section
+    id="openingScreen"
+    class="opening-screen"
+>
 
-    <div class="particles"></div>
 
-    <div class="hero-content">
+    <!-- Falling flowers -->
 
-        <p class="small-title">
-            WE ARE GETTING MARRIED
+    <div
+        id="flowerContainer"
+        class="flower-container"
+    ></div>
+
+
+    <!-- Decorative circles -->
+
+    <div class="opening-glow"></div>
+
+
+    <div class="opening-content">
+
+
+        <!-- Logo -->
+
+        <div class="logo-container">
+
+            <div class="logo-ring">
+
+                <span>
+                    {{ wedding.initials }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <p class="opening-small">
+            A WEDDING INVITATION
         </p>
+
 
         <h1>
+
             {{ wedding.bride }}
+
             <span>&</span>
+
             {{ wedding.groom }}
+
         </h1>
 
-        <div class="gold-line"></div>
 
-        <p class="hero-date">
-            {{ wedding.date }}
+        <p class="opening-tagline">
+            {{ wedding.tagline }}
         </p>
 
-        <p class="hero-location">
-            {{ wedding.location }}
-        </p>
+
+        <div class="opening-divider">
+
+            <span></span>
+
+            ♥ 
+
+            <span></span>
+
+        </div>
+
+
+        <!-- Seal -->
 
         <button
-            class="enter-button"
-            onclick="scrollToInvitation()"
+            id="sealButton"
+            class="seal-button"
+            onclick="openInvitation()"
         >
-            OPEN INVITATION
+
+            <div class="seal">
+
+                <span>
+                    {{ wedding.initials }}
+                </span>
+
+            </div>
+
+
+            <strong>
+                TAP TO OPEN
+            </strong>
+
+            <small>
+                OUR INVITATION
+            </small>
+
         </button>
+
+
+        <p class="opening-date">
+
+            September 29 & 30, 2026
+
+        </p>
+
 
     </div>
 
@@ -98,41 +204,103 @@
 
 
 <!-- =========================================================
-     INVITATION
+     MAIN INVITATION
 ========================================================= -->
 
-<section
-    class="invitation section"
-    id="invitation"
+<main
+    id="mainInvitation"
+    class="main-invitation hidden"
 >
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero-section">
+
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-content">
+
+
+        <p class="hero-small">
+            TOGETHER WITH THEIR FAMILIES
+        </p>
+
+
+        <h2>
+
+            {{ wedding.bride }}
+
+            <span>&</span>
+
+            {{ wedding.groom }}
+
+        </h2>
+
+
+        <div class="hero-line"></div>
+
+
+        <p>
+            REQUEST THE PLEASURE OF YOUR COMPANY
+        </p>
+
+
+        <p class="hero-date">
+            SEPTEMBER 29 & 30, 2026
+        </p>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     INVITATION MESSAGE
+========================================================= -->
+
+<section class="invitation-section section">
+
 
     <p class="section-label">
         WITH LOVE
     </p>
 
+
     <h2>
-        A Beautiful Beginning
+        A New Chapter Begins
     </h2>
+
 
     <div class="ornament">
         ❦
     </div>
 
-    <p class="invitation-text">
-        {{ wedding.welcome_message }}
+
+    <p class="main-message">
+        {{ wedding.intro }}
     </p>
 
-    <p class="invitation-text">
-        {{ wedding.story }}
-    </p>
 
-    <div class="names">
+    <div class="couple-names">
 
-        <span>{{ wedding.bride }}</span>
+        <span>
+            {{ wedding.bride }}
+        </span>
 
-        <small>and</small>
+        <small>
+            &
+        </small>
 
-        <span>{{ wedding.groom }}</span>
+        <span>
+            {{ wedding.groom }}
+        </span>
 
     </div>
 
@@ -141,17 +309,27 @@
 
 
 <!-- =========================================================
-     PHOTO
+     COUPLE PHOTO
 ========================================================= -->
 
 <section class="photo-section">
+
 
     <div class="photo-frame">
 
         <img
             src="{{ url_for('static', filename='images/couple.jpg') }}"
             alt="Bride and Groom"
+            onerror="this.style.display='none'"
         >
+
+        <div class="photo-placeholder">
+
+            <span>
+                {{ wedding.initials }}
+            </span>
+
+        </div>
 
     </div>
 
@@ -160,57 +338,196 @@
 
 
 <!-- =========================================================
-     COUNTDOWN
+     RECEPTION COUNTDOWN
 ========================================================= -->
 
-<section class="countdown-section section">
+<section class="countdown-section reception-countdown">
+
 
     <p class="section-label">
-        SAVE THE DATE
+        FIRST CELEBRATION
     </p>
 
+
     <h2>
-        Until We Say "I Do"
+        Reception
     </h2>
 
-    <div class="countdown">
 
-        <div class="time-box">
+    <p class="countdown-date">
+        {{ wedding.reception.day }},
+        {{ wedding.reception.date }}
+    </p>
 
-            <span id="days">00</span>
 
-            <small>DAYS</small>
+    <p class="countdown-time">
+        {{ wedding.reception.time }}
+    </p>
+
+
+    <div
+        class="countdown"
+        id="receptionCountdown"
+        data-date="{{ wedding.reception.date_iso }}"
+    >
+
+
+        <div class="countdown-box">
+
+            <span class="days">
+                00
+            </span>
+
+            <small>
+                DAYS
+            </small>
+
+        </div>
+
+
+        <div class="countdown-box">
+
+            <span class="hours">
+                00
+            </span>
+
+            <small>
+                HOURS
+            </small>
 
         </div>
 
 
-        <div class="time-box">
+        <div class="countdown-box">
 
-            <span id="hours">00</span>
+            <span class="minutes">
+                00
+            </span>
 
-            <small>HOURS</small>
-
-        </div>
-
-
-        <div class="time-box">
-
-            <span id="minutes">00</span>
-
-            <small>MINUTES</small>
+            <small>
+                MINUTES
+            </small>
 
         </div>
 
 
-        <div class="time-box">
+        <div class="countdown-box">
 
-            <span id="seconds">00</span>
+            <span class="seconds">
+                00
+            </span>
 
-            <small>SECONDS</small>
+            <small>
+                SECONDS
+            </small>
 
         </div>
+
 
     </div>
+
+
+    <p class="event-description">
+        {{ wedding.reception.description }}
+    </p>
+
+</section>
+
+
+
+<!-- =========================================================
+     MUHURTHAM COUNTDOWN
+========================================================= -->
+
+<section class="countdown-section muhurtham-countdown">
+
+
+    <p class="section-label">
+        THE SACRED MOMENT
+    </p>
+
+
+    <h2>
+        Muhurtham
+    </h2>
+
+
+    <p class="countdown-date">
+        {{ wedding.muhurtham.day }},
+        {{ wedding.muhurtham.date }}
+    </p>
+
+
+    <p class="countdown-time">
+        {{ wedding.muhurtham.time }}
+    </p>
+
+
+    <div
+        class="countdown"
+        id="muhurthamCountdown"
+        data-date="{{ wedding.muhurtham.date_iso }}"
+    >
+
+
+        <div class="countdown-box">
+
+            <span class="days">
+                00
+            </span>
+
+            <small>
+                DAYS
+            </small>
+
+        </div>
+
+
+        <div class="countdown-box">
+
+            <span class="hours">
+                00
+            </span>
+
+            <small>
+                HOURS
+            </small>
+
+        </div>
+
+
+        <div class="countdown-box">
+
+            <span class="minutes">
+                00
+            </span>
+
+            <small>
+                MINUTES
+            </small>
+
+        </div>
+
+
+        <div class="countdown-box">
+
+            <span class="seconds">
+                00
+            </span>
+
+            <small>
+                SECONDS
+            </small>
+
+        </div>
+
+
+    </div>
+
+
+    <p class="event-description">
+        {{ wedding.muhurtham.description }}
+    </p>
 
 </section>
 
@@ -220,46 +537,75 @@
      EVENTS
 ========================================================= -->
 
-<section class="events section">
+<section class="events-section section">
+
 
     <p class="section-label">
         CELEBRATE WITH US
     </p>
 
+
     <h2>
-        Wedding Events
+        The Celebrations
     </h2>
 
 
-    <div class="event-container">
+    <div class="events">
 
-        {% for event in wedding.events %}
 
         <div class="event-card">
 
-            <div class="event-number">
-                0{{ loop.index }}
+            <div class="event-icon">
+                ✦
             </div>
 
             <h3>
-                {{ event.name }}
+                Reception
             </h3>
 
-            <div class="event-date">
-                {{ event.date }}
-            </div>
-
-            <div class="event-time">
-                {{ event.time }}
-            </div>
+            <p class="event-date">
+                September 29, 2026
+            </p>
 
             <p>
-                {{ event.description }}
+                {{ wedding.reception.time }}
+            </p>
+
+            <div class="event-divider"></div>
+
+            <p>
+                {{ wedding.reception.description }}
             </p>
 
         </div>
 
-        {% endfor %}
+
+        <div class="event-card">
+
+            <div class="event-icon">
+                ♥
+            </div>
+
+            <h3>
+                Muhurtham
+            </h3>
+
+            <p class="event-date">
+                September 30, 2026
+            </p>
+
+            <p>
+                {{ wedding.muhurtham.time }}
+            </p>
+
+            <div class="event-divider"></div>
+
+            <p>
+                {{ wedding.muhurtham.description }}
+            </p>
+
+        </div>
+
 
     </div>
 
@@ -271,37 +617,45 @@
      VENUE
 ========================================================= -->
 
-<section class="venue section">
+<section class="venue-section section">
+
 
     <p class="section-label">
-        WHERE
+        WHERE WE CELEBRATE
     </p>
 
+
     <h2>
-        Join Us
+        The Venue
     </h2>
+
 
     <div class="venue-card">
 
-        <div class="venue-icon">
+
+        <div class="venue-symbol">
             ♡
         </div>
 
+
         <h3>
-            {{ wedding.venue }}
+            {{ wedding.venue.name }}
         </h3>
 
+
         <p>
-            {{ wedding.address }}
+            {{ wedding.venue.address }}
         </p>
 
+
         <a
-            href="{{ wedding.map_url }}"
+            href="{{ wedding.venue.map_url }}"
             target="_blank"
             class="map-button"
         >
-            VIEW ON MAP
+            VIEW LOCATION
         </a>
+
 
     </div>
 
@@ -310,32 +664,323 @@
 
 
 <!-- =========================================================
-     FINAL MESSAGE
+     RSVP
+========================================================= -->
+
+<section
+    class="rsvp-section section"
+    id="rsvp"
+>
+
+
+    <p class="section-label">
+        YOUR PRESENCE MATTERS
+    </p>
+
+
+    <h2>
+        Will You Join Us?
+    </h2>
+
+
+    <p class="rsvp-intro">
+
+        We would love to celebrate these special moments
+        with you.
+
+        Please let us know whether you will be joining us.
+
+    </p>
+
+
+    <form
+        id="rsvpForm"
+        class="rsvp-form"
+    >
+
+
+        <!-- NAME -->
+
+        <div class="form-group">
+
+            <label>
+                Your Name *
+            </label>
+
+            <input
+                type="text"
+                id="guestName"
+                name="name"
+                placeholder="Enter your name"
+                required
+            >
+
+        </div>
+
+
+
+        <!-- PHONE -->
+
+        <div class="form-group">
+
+            <label>
+                Phone Number
+            </label>
+
+            <input
+                type="tel"
+                id="guestPhone"
+                name="phone"
+                placeholder="Optional"
+            >
+
+        </div>
+
+
+
+        <!-- ATTENDANCE -->
+
+        <div class="form-group">
+
+            <label>
+                Will you be joining us? *
+            </label>
+
+
+            <div class="attendance-options">
+
+
+                <label class="attendance-option">
+
+                    <input
+                        type="radio"
+                        name="attendance"
+                        value="yes"
+                        required
+                    >
+
+                    <span>
+                        ❤️ Yes, I'll be there
+                    </span>
+
+                </label>
+
+
+                <label class="attendance-option">
+
+                    <input
+                        type="radio"
+                        name="attendance"
+                        value="maybe"
+                    >
+
+                    <span>
+                        🤔 Maybe
+                    </span>
+
+                </label>
+
+
+                <label class="attendance-option">
+
+                    <input
+                        type="radio"
+                        name="attendance"
+                        value="no"
+                    >
+
+                    <span>
+                        💌 Sorry, I can't make it
+                    </span>
+
+                </label>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- NUMBER OF GUESTS -->
+
+        <div
+            class="form-group"
+            id="guestCountGroup"
+        >
+
+            <label>
+                Number of Guests
+            </label>
+
+            <select
+                id="guestCount"
+                name="guests"
+            >
+
+                <option value="1">
+                    1
+                </option>
+
+                <option value="2">
+                    2
+                </option>
+
+                <option value="3">
+                    3
+                </option>
+
+                <option value="4">
+                    4
+                </option>
+
+                <option value="5">
+                    5
+                </option>
+
+                <option value="6">
+                    6
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- REASON -->
+
+        <div
+            class="form-group hidden"
+            id="reasonGroup"
+        >
+
+            <label>
+                If you can't attend, please tell us why
+            </label>
+
+            <select
+                id="reason"
+                name="reason"
+            >
+
+                <option value="">
+                    Select a reason
+                </option>
+
+                <option value="Travel">
+                    Travel / Distance
+                </option>
+
+                <option value="Work">
+                    Work / Office
+                </option>
+
+                <option value="Personal">
+                    Personal Reason
+                </option>
+
+                <option value="Health">
+                    Health / Other Commitment
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- MESSAGE -->
+
+        <div class="form-group">
+
+            <label>
+                Message for the Couple
+            </label>
+
+            <textarea
+                id="guestMessage"
+                name="message"
+                rows="4"
+                placeholder="Send us your wishes..."
+            ></textarea>
+
+        </div>
+
+
+
+        <button
+            type="submit"
+            class="submit-button"
+            id="submitButton"
+        >
+
+            SEND MY RESPONSE
+
+        </button>
+
+
+        <div
+            id="rsvpMessage"
+            class="rsvp-message"
+        ></div>
+
+
+    </form>
+
+</section>
+
+
+
+<!-- =========================================================
+     FINAL
 ========================================================= -->
 
 <section class="final-section">
 
+
     <div class="final-content">
 
+
+        <div class="final-logo">
+            {{ wedding.initials }}
+        </div>
+
+
         <p>
-            YOUR PRESENCE
+            UNTIL WE MEET
         </p>
 
+
         <h2>
-            Is Our Greatest Gift
+            With Love
         </h2>
 
-        <div class="heart">
+
+        <div class="final-heart">
             ♥
         </div>
 
+
         <h3>
-            {{ wedding.bride }} & {{ wedding.groom }}
+
+            {{ wedding.bride }}
+
+            &
+
+            {{ wedding.groom }}
+
         </h3>
 
-        <span>
-            {{ wedding.date }}
-        </span>
+
+        <p>
+            September 29 & 30, 2026
+        </p>
+
 
     </div>
 
@@ -350,24 +995,38 @@
 <footer>
 
     <p>
-        Made with ♥ for our special day
+        Made with love ♥
     </p>
 
 </footer>
 
 
+</main>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+    const WEDDING_DATA = {
+
+        reception:
+            "{{ wedding.reception.date_iso }}",
+
+        muhurtham:
+            "{{ wedding.muhurtham.date_iso }}"
+
+    };
+
+</script>
+
 
 <script
     src="{{ url_for('static', filename='js/script.js') }}"
 ></script>
-
-
-<script>
-
-    const weddingDate =
-        "{{ wedding.date_iso }}";
-
-</script>
 
 
 </body>
