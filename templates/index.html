@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        {{ wedding.bride }} & {{ wedding.groom }}
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     MUSIC
+========================================================= -->
+
+<audio id="weddingMusic" loop>
+
+    <source
+        src="{{ url_for('static', filename='music/wedding.mp3') }}"
+        type="audio/mpeg"
+    >
+
+</audio>
+
+
+<button
+    class="music-button"
+    onclick="toggleMusic()"
+    id="musicButton"
+>
+    ♪
+</button>
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="particles"></div>
+
+    <div class="hero-content">
+
+        <p class="small-title">
+            WE ARE GETTING MARRIED
+        </p>
+
+        <h1>
+            {{ wedding.bride }}
+            <span>&</span>
+            {{ wedding.groom }}
+        </h1>
+
+        <div class="gold-line"></div>
+
+        <p class="hero-date">
+            {{ wedding.date }}
+        </p>
+
+        <p class="hero-location">
+            {{ wedding.location }}
+        </p>
+
+        <button
+            class="enter-button"
+            onclick="scrollToInvitation()"
+        >
+            OPEN INVITATION
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     INVITATION
+========================================================= -->
+
+<section
+    class="invitation section"
+    id="invitation"
+>
+
+    <p class="section-label">
+        WITH LOVE
+    </p>
+
+    <h2>
+        A Beautiful Beginning
+    </h2>
+
+    <div class="ornament">
+        ❦
+    </div>
+
+    <p class="invitation-text">
+        {{ wedding.welcome_message }}
+    </p>
+
+    <p class="invitation-text">
+        {{ wedding.story }}
+    </p>
+
+    <div class="names">
+
+        <span>{{ wedding.bride }}</span>
+
+        <small>and</small>
+
+        <span>{{ wedding.groom }}</span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PHOTO
+========================================================= -->
+
+<section class="photo-section">
+
+    <div class="photo-frame">
+
+        <img
+            src="{{ url_for('static', filename='images/couple.jpg') }}"
+            alt="Bride and Groom"
+        >
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     COUNTDOWN
+========================================================= -->
+
+<section class="countdown-section section">
+
+    <p class="section-label">
+        SAVE THE DATE
+    </p>
+
+    <h2>
+        Until We Say "I Do"
+    </h2>
+
+    <div class="countdown">
+
+        <div class="time-box">
+
+            <span id="days">00</span>
+
+            <small>DAYS</small>
+
+        </div>
+
+
+        <div class="time-box">
+
+            <span id="hours">00</span>
+
+            <small>HOURS</small>
+
+        </div>
+
+
+        <div class="time-box">
+
+            <span id="minutes">00</span>
+
+            <small>MINUTES</small>
+
+        </div>
+
+
+        <div class="time-box">
+
+            <span id="seconds">00</span>
+
+            <small>SECONDS</small>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     EVENTS
+========================================================= -->
+
+<section class="events section">
+
+    <p class="section-label">
+        CELEBRATE WITH US
+    </p>
+
+    <h2>
+        Wedding Events
+    </h2>
+
+
+    <div class="event-container">
+
+        {% for event in wedding.events %}
+
+        <div class="event-card">
+
+            <div class="event-number">
+                0{{ loop.index }}
+            </div>
+
+            <h3>
+                {{ event.name }}
+            </h3>
+
+            <div class="event-date">
+                {{ event.date }}
+            </div>
+
+            <div class="event-time">
+                {{ event.time }}
+            </div>
+
+            <p>
+                {{ event.description }}
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     VENUE
+========================================================= -->
+
+<section class="venue section">
+
+    <p class="section-label">
+        WHERE
+    </p>
+
+    <h2>
+        Join Us
+    </h2>
+
+    <div class="venue-card">
+
+        <div class="venue-icon">
+            ♡
+        </div>
+
+        <h3>
+            {{ wedding.venue }}
+        </h3>
+
+        <p>
+            {{ wedding.address }}
+        </p>
+
+        <a
+            href="{{ wedding.map_url }}"
+            target="_blank"
+            class="map-button"
+        >
+            VIEW ON MAP
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FINAL MESSAGE
+========================================================= -->
+
+<section class="final-section">
+
+    <div class="final-content">
+
+        <p>
+            YOUR PRESENCE
+        </p>
+
+        <h2>
+            Is Our Greatest Gift
+        </h2>
+
+        <div class="heart">
+            ♥
+        </div>
+
+        <h3>
+            {{ wedding.bride }} & {{ wedding.groom }}
+        </h3>
+
+        <span>
+            {{ wedding.date }}
+        </span>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <p>
+        Made with ♥ for our special day
+    </p>
+
+</footer>
+
+
+
+<script
+    src="{{ url_for('static', filename='js/script.js') }}"
+></script>
+
+
+<script>
+
+    const weddingDate =
+        "{{ wedding.date_iso }}";
+
+</script>
+
+
+</body>
+
+</html>
