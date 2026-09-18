@@ -13,17 +13,13 @@
 
     <meta
         name="theme-color"
-        content="#2a1816"
+        content="#21100e"
     >
 
     <title>
         {{ wedding.bride }} & {{ wedding.groom }}
     </title>
 
-
-    <!-- =====================================================
-         GOOGLE FONTS
-    ====================================================== -->
 
     <link
         rel="preconnect"
@@ -36,15 +32,12 @@
         crossorigin
     >
 
+
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap"
         rel="stylesheet"
     >
 
-
-    <!-- =====================================================
-         CSS
-    ====================================================== -->
 
     <link
         rel="stylesheet"
@@ -80,8 +73,8 @@
 ========================================================= -->
 
 <button
-    class="music-button"
     id="musicButton"
+    class="music-button"
     onclick="toggleMusic()"
 >
     ♪
@@ -99,33 +92,31 @@
 >
 
 
-    <!-- Falling flowers -->
-
     <div
         id="flowerContainer"
         class="flower-container"
     ></div>
 
 
-    <!-- Decorative circles -->
+    <div class="opening-stars">
 
-    <div class="opening-glow"></div>
+        ✦
+        <span>✧</span>
+        ✦
+
+    </div>
 
 
     <div class="opening-content">
 
 
-        <!-- Logo -->
+        <!-- LOGO -->
 
-        <div class="logo-container">
+        <div class="logo-ring">
 
-            <div class="logo-ring">
-
-                <span>
-                    {{ wedding.initials }}
-                </span>
-
-            </div>
+            <span>
+                {{ wedding.initials }}
+            </span>
 
         </div>
 
@@ -147,7 +138,9 @@
 
 
         <p class="opening-tagline">
+
             {{ wedding.tagline }}
+
         </p>
 
 
@@ -162,7 +155,9 @@
         </div>
 
 
-        <!-- Seal -->
+        <!-- =================================================
+             SEAL
+        ================================================== -->
 
         <button
             id="sealButton"
@@ -182,6 +177,7 @@
             <strong>
                 TAP TO OPEN
             </strong>
+
 
             <small>
                 OUR INVITATION
@@ -214,13 +210,26 @@
 
 
 <!-- =========================================================
+     FLOATING BUTTONS
+========================================================= -->
+
+<a
+    href="#rsvp"
+    class="floating-rsvp"
+>
+    RSVP
+</a>
+
+
+
+<!-- =========================================================
      HERO
 ========================================================= -->
 
 <section class="hero-section">
 
 
-    <div class="hero-overlay"></div>
+    <div class="hero-border"></div>
 
 
     <div class="hero-content">
@@ -262,10 +271,10 @@
 
 
 <!-- =========================================================
-     INVITATION MESSAGE
+     INTRODUCTION
 ========================================================= -->
 
-<section class="invitation-section section">
+<section class="section invitation-section">
 
 
     <p class="section-label">
@@ -284,7 +293,9 @@
 
 
     <p class="main-message">
+
         {{ wedding.intro }}
+
     </p>
 
 
@@ -294,9 +305,11 @@
             {{ wedding.bride }}
         </span>
 
+
         <small>
             &
         </small>
+
 
         <span>
             {{ wedding.groom }}
@@ -309,7 +322,7 @@
 
 
 <!-- =========================================================
-     COUPLE PHOTO
+     PHOTO
 ========================================================= -->
 
 <section class="photo-section">
@@ -317,19 +330,20 @@
 
     <div class="photo-frame">
 
+
         <img
             src="{{ url_for('static', filename='images/couple.jpg') }}"
             alt="Bride and Groom"
             onerror="this.style.display='none'"
         >
 
+
         <div class="photo-placeholder">
 
-            <span>
-                {{ wedding.initials }}
-            </span>
+            {{ wedding.initials }}
 
         </div>
+
 
     </div>
 
@@ -341,7 +355,7 @@
      RECEPTION COUNTDOWN
 ========================================================= -->
 
-<section class="countdown-section reception-countdown">
+<section class="countdown-section reception-section">
 
 
     <p class="section-label">
@@ -355,22 +369,26 @@
 
 
     <p class="countdown-date">
+
         {{ wedding.reception.day }},
+
         {{ wedding.reception.date }}
+
     </p>
 
 
     <p class="countdown-time">
+
         {{ wedding.reception.time }}
+
     </p>
 
 
     <div
-        class="countdown"
         id="receptionCountdown"
+        class="countdown"
         data-date="{{ wedding.reception.date_iso }}"
     >
-
 
         <div class="countdown-box">
 
@@ -423,12 +441,13 @@
 
         </div>
 
-
     </div>
 
 
     <p class="event-description">
+
         {{ wedding.reception.description }}
+
     </p>
 
 </section>
@@ -439,7 +458,7 @@
      MUHURTHAM COUNTDOWN
 ========================================================= -->
 
-<section class="countdown-section muhurtham-countdown">
+<section class="countdown-section muhurtham-section">
 
 
     <p class="section-label">
@@ -453,22 +472,26 @@
 
 
     <p class="countdown-date">
+
         {{ wedding.muhurtham.day }},
+
         {{ wedding.muhurtham.date }}
+
     </p>
 
 
     <p class="countdown-time">
+
         {{ wedding.muhurtham.time }}
+
     </p>
 
 
     <div
-        class="countdown"
         id="muhurthamCountdown"
+        class="countdown"
         data-date="{{ wedding.muhurtham.date_iso }}"
     >
-
 
         <div class="countdown-box">
 
@@ -521,12 +544,13 @@
 
         </div>
 
-
     </div>
 
 
     <p class="event-description">
+
         {{ wedding.muhurtham.description }}
+
     </p>
 
 </section>
@@ -537,7 +561,7 @@
      EVENTS
 ========================================================= -->
 
-<section class="events-section section">
+<section class="section events-section">
 
 
     <p class="section-label">
@@ -559,19 +583,24 @@
                 ✦
             </div>
 
+
             <h3>
                 Reception
             </h3>
+
 
             <p class="event-date">
                 September 29, 2026
             </p>
 
-            <p>
-                {{ wedding.reception.time }}
+
+            <p class="event-time">
+                07:00 PM
             </p>
 
+
             <div class="event-divider"></div>
+
 
             <p>
                 {{ wedding.reception.description }}
@@ -580,25 +609,31 @@
         </div>
 
 
+
         <div class="event-card">
 
             <div class="event-icon">
                 ♥
             </div>
 
+
             <h3>
                 Muhurtham
             </h3>
+
 
             <p class="event-date">
                 September 30, 2026
             </p>
 
-            <p>
-                {{ wedding.muhurtham.time }}
+
+            <p class="event-time">
+                09:30 AM
             </p>
 
+
             <div class="event-divider"></div>
+
 
             <p>
                 {{ wedding.muhurtham.description }}
@@ -617,7 +652,7 @@
      VENUE
 ========================================================= -->
 
-<section class="venue-section section">
+<section class="section venue-section">
 
 
     <p class="section-label">
@@ -668,8 +703,8 @@
 ========================================================= -->
 
 <section
-    class="rsvp-section section"
     id="rsvp"
+    class="section rsvp-section"
 >
 
 
@@ -688,9 +723,11 @@
         We would love to celebrate these special moments
         with you.
 
-        Please let us know whether you will be joining us.
+        Please let us know your plans so we can make
+        the arrangements accordingly.
 
     </p>
+
 
 
     <form
@@ -704,13 +741,13 @@
         <div class="form-group">
 
             <label>
-                Your Name *
+                YOUR NAME *
             </label>
+
 
             <input
                 type="text"
                 id="guestName"
-                name="name"
                 placeholder="Enter your name"
                 required
             >
@@ -724,13 +761,13 @@
         <div class="form-group">
 
             <label>
-                Phone Number
+                PHONE NUMBER
             </label>
+
 
             <input
                 type="tel"
                 id="guestPhone"
-                name="phone"
                 placeholder="Optional"
             >
 
@@ -738,12 +775,12 @@
 
 
 
-        <!-- ATTENDANCE -->
+        <!-- RECEPTION -->
 
         <div class="form-group">
 
             <label>
-                Will you be joining us? *
+                RECEPTION — SEPTEMBER 29 *
             </label>
 
 
@@ -754,9 +791,8 @@
 
                     <input
                         type="radio"
-                        name="attendance"
+                        name="reception"
                         value="yes"
-                        required
                     >
 
                     <span>
@@ -770,7 +806,7 @@
 
                     <input
                         type="radio"
-                        name="attendance"
+                        name="reception"
                         value="maybe"
                     >
 
@@ -785,12 +821,12 @@
 
                     <input
                         type="radio"
-                        name="attendance"
+                        name="reception"
                         value="no"
                     >
 
                     <span>
-                        💌 Sorry, I can't make it
+                        💌 Sorry, I can't attend
                     </span>
 
                 </label>
@@ -802,44 +838,159 @@
 
 
 
-        <!-- NUMBER OF GUESTS -->
+        <!-- MUHURTHAM -->
 
-        <div
-            class="form-group"
-            id="guestCountGroup"
-        >
+        <div class="form-group">
 
             <label>
-                Number of Guests
+                MUHURTHAM — SEPTEMBER 30 *
             </label>
+
+
+            <div class="attendance-options">
+
+
+                <label class="attendance-option">
+
+                    <input
+                        type="radio"
+                        name="muhurtham"
+                        value="yes"
+                    >
+
+                    <span>
+                        ❤️ Yes, I'll be there
+                    </span>
+
+                </label>
+
+
+                <label class="attendance-option">
+
+                    <input
+                        type="radio"
+                        name="muhurtham"
+                        value="maybe"
+                    >
+
+                    <span>
+                        🤔 Maybe
+                    </span>
+
+                </label>
+
+
+                <label class="attendance-option">
+
+                    <input
+                        type="radio"
+                        name="muhurtham"
+                        value="no"
+                    >
+
+                    <span>
+                        💌 Sorry, I can't attend
+                    </span>
+
+                </label>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- GUEST COUNT -->
+
+        <div class="form-group">
+
+            <label>
+                NUMBER OF GUESTS
+            </label>
+
 
             <select
                 id="guestCount"
-                name="guests"
             >
 
                 <option value="1">
-                    1
+                    1 Guest
                 </option>
 
                 <option value="2">
-                    2
+                    2 Guests
                 </option>
 
                 <option value="3">
-                    3
+                    3 Guests
                 </option>
 
                 <option value="4">
-                    4
+                    4 Guests
                 </option>
 
                 <option value="5">
-                    5
+                    5 Guests
                 </option>
 
                 <option value="6">
-                    6
+                    6 Guests
+                </option>
+
+                <option value="7">
+                    7 Guests
+                </option>
+
+                <option value="8">
+                    8 Guests
+                </option>
+
+                <option value="9">
+                    9 Guests
+                </option>
+
+                <option value="10">
+                    10 Guests
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- DIETARY -->
+
+        <div class="form-group">
+
+            <label>
+                FOOD PREFERENCE
+            </label>
+
+
+            <select
+                id="dietary"
+            >
+
+                <option value="">
+                    Select preference
+                </option>
+
+                <option value="Vegetarian">
+                    Vegetarian
+                </option>
+
+                <option value="Non-Vegetarian">
+                    Non-Vegetarian
+                </option>
+
+                <option value="Jain">
+                    Jain
+                </option>
+
+                <option value="Other">
+                    Other
                 </option>
 
             </select>
@@ -850,38 +1001,35 @@
 
         <!-- REASON -->
 
-        <div
-            class="form-group hidden"
-            id="reasonGroup"
-        >
+        <div class="form-group">
 
             <label>
-                If you can't attend, please tell us why
+                IF YOU CANNOT ATTEND, PLEASE TELL US WHY
             </label>
+
 
             <select
                 id="reason"
-                name="reason"
             >
 
                 <option value="">
                     Select a reason
                 </option>
 
-                <option value="Travel">
+                <option value="Travel / Distance">
                     Travel / Distance
                 </option>
 
-                <option value="Work">
+                <option value="Work / Office">
                     Work / Office
                 </option>
 
-                <option value="Personal">
-                    Personal Reason
+                <option value="Personal Commitment">
+                    Personal Commitment
                 </option>
 
                 <option value="Health">
-                    Health / Other Commitment
+                    Health
                 </option>
 
                 <option value="Other">
@@ -899,28 +1047,28 @@
         <div class="form-group">
 
             <label>
-                Message for the Couple
+                MESSAGE FOR THE COUPLE
             </label>
+
 
             <textarea
                 id="guestMessage"
-                name="message"
-                rows="4"
-                placeholder="Send us your wishes..."
+                rows="5"
+                placeholder="Send your wishes..."
             ></textarea>
 
         </div>
 
 
 
+        <!-- SUBMIT -->
+
         <button
             type="submit"
-            class="submit-button"
             id="submitButton"
+            class="submit-button"
         >
-
             SEND MY RESPONSE
-
         </button>
 
 
@@ -947,7 +1095,9 @@
 
 
         <div class="final-logo">
+
             {{ wedding.initials }}
+
         </div>
 
 
@@ -988,10 +1138,6 @@
 
 
 
-<!-- =========================================================
-     FOOTER
-========================================================= -->
-
 <footer>
 
     <p>
@@ -1006,7 +1152,7 @@
 
 
 <!-- =========================================================
-     JAVASCRIPT
+     JAVASCRIPT VARIABLES
 ========================================================= -->
 
 <script>

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Wedding RSVP Responses
+    </title>
+
+
+    <style>
+
+        body {
+
+            margin: 0;
+
+            padding: 30px;
+
+            background: #f7efe6;
+
+            font-family: Arial, sans-serif;
+
+        }
+
+
+        h1 {
+
+            text-align: center;
+
+            color: #3a211e;
+
+        }
+
+
+        .summary {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
+
+            margin: 30px 0;
+
+        }
+
+
+        .box {
+
+            padding: 25px;
+
+            min-width: 130px;
+
+            text-align: center;
+
+            background: white;
+
+            border: 1px solid #ddd;
+
+        }
+
+
+        .box strong {
+
+            display: block;
+
+            font-size: 30px;
+
+            color: #8e4038;
+
+        }
+
+
+        .table-container {
+
+            overflow-x: auto;
+
+            background: white;
+
+        }
+
+
+        table {
+
+            width: 100%;
+
+            min-width: 1000px;
+
+            border-collapse: collapse;
+
+        }
+
+
+        th,
+        td {
+
+            padding: 12px;
+
+            border: 1px solid #ddd;
+
+            text-align: left;
+
+            font-size: 13px;
+
+        }
+
+
+        th {
+
+            background: #3a211e;
+
+            color: white;
+
+        }
+
+
+        .yes {
+
+            color: green;
+
+            font-weight: bold;
+
+        }
+
+
+        .no {
+
+            color: red;
+
+            font-weight: bold;
+
+        }
+
+
+        .maybe {
+
+            color: #b07800;
+
+            font-weight: bold;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<h1>
+    💍 Wedding RSVP Responses
+</h1>
+
+
+
+{% set total = rsvps|length %}
+
+
+{% set reception_yes =
+    rsvps
+    |selectattr("reception", "equalto", "yes")
+    |list
+    |length
+%}
+
+
+{% set reception_no =
+    rsvps
+    |selectattr("reception", "equalto", "no")
+    |list
+    |length
+%}
+
+
+{% set reception_maybe =
+    rsvps
+    |selectattr("reception", "equalto", "maybe")
+    |list
+    |length
+%}
+
+
+{% set muhurtham_yes =
+    rsvps
+    |selectattr("muhurtham", "equalto", "yes")
+    |list
+    |length
+%}
+
+
+{% set muhurtham_no =
+    rsvps
+    |selectattr("muhurtham", "equalto", "no")
+    |list
+    |length
+%}
+
+
+{% set muhurtham_maybe =
+    rsvps
+    |selectattr("muhurtham", "equalto", "maybe")
+    |list
+    |length
+%}
+
+
+
+<div class="summary">
+
+
+    <div class="box">
+
+        <strong>
+            {{ total }}
+        </strong>
+
+        Total Responses
+
+    </div>
+
+
+    <div class="box">
+
+        <strong>
+            {{ reception_yes }}
+        </strong>
+
+        Reception Yes
+
+    </div>
+
+
+    <div class="box">
+
+        <strong>
+            {{ reception_maybe }}
+        </strong>
+
+        Reception Maybe
+
+    </div>
+
+
+    <div class="box">
+
+        <strong>
+            {{ reception_no }}
+        </strong>
+
+        Reception No
+
+    </div>
+
+
+    <div class="box">
+
+        <strong>
+            {{ muhurtham_yes }}
+        </strong>
+
+        Muhurtham Yes
+
+    </div>
+
+
+    <div class="box">
+
+        <strong>
+            {{ muhurtham_maybe }}
+        </strong>
+
+        Muhurtham Maybe
+
+    </div>
+
+
+    <div class="box">
+
+        <strong>
+            {{ muhurtham_no }}
+        </strong>
+
+        Muhurtham No
+
+    </div>
+
+
+</div>
+
+
+
+<div class="table-container">
+
+
+<table>
+
+
+<thead>
+
+<tr>
+
+    <th>
+        ID
+    </th>
+
+    <th>
+        Name
+    </th>
+
+    <th>
+        Phone
+    </th>
+
+    <th>
+        Reception
+    </th>
+
+    <th>
+        Muhurtham
+    </th>
+
+    <th>
+        Guests
+    </th>
+
+    <th>
+        Food
+    </th>
+
+    <th>
+        Reason
+    </th>
+
+    <th>
+        Message
+    </th>
+
+    <th>
+        Submitted
+    </th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+{% for rsvp in rsvps %}
+
+<tr>
+
+
+    <td>
+        {{ rsvp.id }}
+    </td>
+
+
+    <td>
+        {{ rsvp.name }}
+    </td>
+
+
+    <td>
+        {{ rsvp.phone }}
+    </td>
+
+
+    <td class="{{ rsvp.reception }}">
+
+        {{ rsvp.reception|upper }}
+
+    </td>
+
+
+    <td class="{{ rsvp.muhurtham }}">
+
+        {{ rsvp.muhurtham|upper }}
+
+    </td>
+
+
+    <td>
+        {{ rsvp.guests }}
+    </td>
+
+
+    <td>
+        {{ rsvp.dietary }}
+    </td>
+
+
+    <td>
+        {{ rsvp.reason }}
+    </td>
+
+
+    <td>
+        {{ rsvp.message }}
+    </td>
+
+
+    <td>
+        {{ rsvp.submitted_at }}
+    </td>
+
+
+</tr>
+
+{% endfor %}
+
+
+{% if not rsvps %}
+
+<tr>
+
+    <td
+        colspan="10"
+        style="text-align:center"
+    >
+
+        No RSVP responses yet.
+
+    </td>
+
+</tr>
+
+{% endif %}
+
+
+</tbody>
+
+</table>
+
+</div>
+
+
+</body>
+
+</html>

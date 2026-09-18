@@ -3,7 +3,6 @@
 // ============================================================
 
 
-
 // ============================================================
 // ELEMENTS
 // ============================================================
@@ -11,15 +10,17 @@
 const openingScreen =
     document.getElementById("openingScreen");
 
+
 const mainInvitation =
     document.getElementById("mainInvitation");
+
 
 const weddingMusic =
     document.getElementById("weddingMusic");
 
+
 const musicButton =
     document.getElementById("musicButton");
-
 
 
 let musicPlaying = false;
@@ -33,7 +34,9 @@ let musicPlaying = false;
 function createFlower() {
 
     const container =
-        document.getElementById("flowerContainer");
+        document.getElementById(
+            "flowerContainer"
+        );
 
 
     if (!container) {
@@ -50,19 +53,29 @@ function createFlower() {
 
 
     const flowers = [
+
         "🌸",
+
         "🌺",
+
         "🌼",
+
+        "🌷",
+
         "✿",
+
         "❀",
+
         "❁"
+
     ];
 
 
     flower.innerHTML =
         flowers[
             Math.floor(
-                Math.random() * flowers.length
+                Math.random() *
+                flowers.length
             )
         ];
 
@@ -72,33 +85,46 @@ function createFlower() {
 
 
     flower.style.fontSize =
-        (12 + Math.random() * 18) + "px";
+        (
+            12 +
+            Math.random() * 18
+        ) + "px";
 
 
     flower.style.animationDuration =
-        (7 + Math.random() * 7) + "s";
+        (
+            7 +
+            Math.random() * 7
+        ) + "s";
 
 
     flower.style.animationDelay =
-        Math.random() * 2 + "s";
+        (
+            Math.random() * 2
+        ) + "s";
 
 
-    container.appendChild(flower);
+    container.appendChild(
+        flower
+    );
 
 
     setTimeout(
-        () => {
+        function () {
 
             flower.remove();
 
         },
-        15000
+        16000
     );
+
 }
 
 
 
-// Create flowers continuously
+// ============================================================
+// CONTINUOUS FLOWERS
+// ============================================================
 
 setInterval(
     createFlower,
@@ -106,17 +132,18 @@ setInterval(
 );
 
 
+
 // Initial flowers
 
 for (
     let i = 0;
-    i < 15;
+    i < 20;
     i++
 ) {
 
     setTimeout(
         createFlower,
-        i * 150
+        i * 120
     );
 
 }
@@ -134,34 +161,45 @@ function startMusic() {
     }
 
 
-    weddingMusic.volume = 0.45;
+    weddingMusic.volume =
+        0.45;
 
 
     weddingMusic
         .play()
-        .then(() => {
+        .then(
+            function () {
 
-            musicPlaying = true;
+                musicPlaying =
+                    true;
 
-            if (musicButton) {
 
-                musicButton.innerHTML =
-                    "❚❚";
+                if (musicButton) {
+
+                    musicButton.innerHTML =
+                        "❚❚";
+
+                }
 
             }
+        )
+        .catch(
+            function () {
 
-        })
-        .catch(() => {
+                console.log(
+                    "Browser blocked autoplay."
+                );
 
-            console.log(
-                "Autoplay blocked by browser."
-            );
-
-        });
+            }
+        );
 
 }
 
 
+
+// ============================================================
+// TOGGLE MUSIC
+// ============================================================
 
 function toggleMusic() {
 
@@ -174,9 +212,12 @@ function toggleMusic() {
 
         weddingMusic.pause();
 
-        musicPlaying = false;
+        musicPlaying =
+            false;
 
-        musicButton.innerHTML = "♪";
+
+        musicButton.innerHTML =
+            "♪";
 
     }
 
@@ -184,20 +225,15 @@ function toggleMusic() {
 
         weddingMusic
             .play()
-            .then(() => {
+            .then(
+                function () {
 
-                musicPlaying = true;
+                    musicPlaying =
+                        true;
 
-                musicButton.innerHTML =
-                    "❚❚";
 
-            })
-            .catch(
-                error => {
-
-                    console.log(
-                        error
-                    );
+                    musicButton.innerHTML =
+                        "❚❚";
 
                 }
             );
@@ -215,38 +251,60 @@ function toggleMusic() {
 function openInvitation() {
 
 
-    // Start music because this is a
-    // direct user interaction.
+    // This is a direct user interaction,
+    // so browser allows music much more reliably.
 
     startMusic();
 
 
-    // Add opening animation
+    // Prevent repeated clicks
+
+    const sealButton =
+        document.getElementById(
+            "sealButton"
+        );
+
+
+    if (sealButton) {
+
+        sealButton.disabled =
+            true;
+
+    }
+
+
+    // Opening animation
 
     openingScreen.classList.add(
         "opened"
     );
 
 
-    // Show main invitation
-
     setTimeout(
-        () => {
+        function () {
+
 
             mainInvitation.classList.remove(
                 "hidden"
             );
+
 
             mainInvitation.classList.add(
                 "visible"
             );
 
 
-            // Remove opening screen
-            // after animation
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
 
             setTimeout(
-                () => {
+                function () {
 
                     openingScreen.style.display =
                         "none";
@@ -255,13 +313,6 @@ function openInvitation() {
                 1000
             );
 
-
-            // Scroll to beginning
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
 
         },
         700
@@ -272,12 +323,12 @@ function openInvitation() {
 
 
 // ============================================================
-// AUTOPLAY ATTEMPT
+// TRY AUTOPLAY
 // ============================================================
 
 window.addEventListener(
     "load",
-    () => {
+    function () {
 
         startMusic();
 
@@ -287,15 +338,17 @@ window.addEventListener(
 
 
 // ============================================================
-// START MUSIC ON FIRST INTERACTION
+// FIRST USER INTERACTION
 // ============================================================
 
 document.addEventListener(
     "click",
-    () => {
+    function () {
 
         if (!musicPlaying) {
+
             startMusic();
+
         }
 
     },
@@ -307,7 +360,7 @@ document.addEventListener(
 
 
 // ============================================================
-// COUNTDOWN FUNCTION
+// COUNTDOWN
 // ============================================================
 
 function startCountdown(
@@ -333,20 +386,27 @@ function startCountdown(
 
 
     const daysElement =
-        container.querySelector(".days");
+        container.querySelector(
+            ".days"
+        );
 
 
     const hoursElement =
-        container.querySelector(".hours");
+        container.querySelector(
+            ".hours"
+        );
 
 
     const minutesElement =
-        container.querySelector(".minutes");
+        container.querySelector(
+            ".minutes"
+        );
 
 
     const secondsElement =
-        container.querySelector(".seconds");
-
+        container.querySelector(
+            ".seconds"
+        );
 
 
     function update() {
@@ -360,19 +420,26 @@ function startCountdown(
             targetDate - now;
 
 
-        if (difference <= 0) {
+        if (
+            difference <= 0
+        ) {
+
 
             daysElement.innerText =
                 "00";
 
+
             hoursElement.innerText =
                 "00";
+
 
             minutesElement.innerText =
                 "00";
 
+
             secondsElement.innerText =
                 "00";
+
 
             return;
 
@@ -425,7 +492,6 @@ function startCountdown(
             );
 
 
-
         daysElement.innerText =
             String(days)
                 .padStart(2, "0");
@@ -461,7 +527,7 @@ function startCountdown(
 
 
 // ============================================================
-// START BOTH COUNTDOWNS
+// START COUNTDOWNS
 // ============================================================
 
 startCountdown(
@@ -471,70 +537,6 @@ startCountdown(
 
 startCountdown(
     "muhurthamCountdown"
-);
-
-
-
-// ============================================================
-// RSVP ATTENDANCE
-// ============================================================
-
-const attendanceInputs =
-    document.querySelectorAll(
-        'input[name="attendance"]'
-    );
-
-
-const reasonGroup =
-    document.getElementById(
-        "reasonGroup"
-    );
-
-
-const guestCountGroup =
-    document.getElementById(
-        "guestCountGroup"
-    );
-
-
-attendanceInputs.forEach(
-    input => {
-
-        input.addEventListener(
-            "change",
-            function () {
-
-
-                if (
-                    this.value === "no"
-                ) {
-
-                    reasonGroup.classList.remove(
-                        "hidden"
-                    );
-
-                    guestCountGroup.classList.add(
-                        "hidden"
-                    );
-
-                }
-
-                else {
-
-                    reasonGroup.classList.add(
-                        "hidden"
-                    );
-
-                    guestCountGroup.classList.remove(
-                        "hidden"
-                    );
-
-                }
-
-            }
-        );
-
-    }
 );
 
 
@@ -554,10 +556,58 @@ if (rsvpForm) {
 
     rsvpForm.addEventListener(
         "submit",
-        async function(event) {
+        async function (event) {
 
 
             event.preventDefault();
+
+
+            const name =
+                document.getElementById(
+                    "guestName"
+                ).value.trim();
+
+
+            const phone =
+                document.getElementById(
+                    "guestPhone"
+                ).value.trim();
+
+
+            const receptionInput =
+                document.querySelector(
+                    'input[name="reception"]:checked'
+                );
+
+
+            const muhurthamInput =
+                document.querySelector(
+                    'input[name="muhurtham"]:checked'
+                );
+
+
+            const guests =
+                document.getElementById(
+                    "guestCount"
+                ).value;
+
+
+            const dietary =
+                document.getElementById(
+                    "dietary"
+                ).value;
+
+
+            const reason =
+                document.getElementById(
+                    "reason"
+                ).value;
+
+
+            const message =
+                document.getElementById(
+                    "guestMessage"
+                ).value.trim();
 
 
             const submitButton =
@@ -566,66 +616,79 @@ if (rsvpForm) {
                 );
 
 
-            const message =
+            const rsvpMessage =
                 document.getElementById(
                     "rsvpMessage"
                 );
 
 
-            const selectedAttendance =
-                document.querySelector(
-                    'input[name="attendance"]:checked'
-                );
 
+            // =================================================
+            // VALIDATION
+            // =================================================
 
-            if (!selectedAttendance) {
+            if (!name) {
 
-                message.innerText =
-                    "Please select whether you will be joining us.";
+                rsvpMessage.innerText =
+                    "Please enter your name.";
 
                 return;
 
             }
 
 
+            if (!receptionInput) {
+
+                rsvpMessage.innerText =
+                    "Please select your Reception attendance.";
+
+                return;
+
+            }
+
+
+            if (!muhurthamInput) {
+
+                rsvpMessage.innerText =
+                    "Please select your Muhurtham attendance.";
+
+                return;
+
+            }
+
+
+
+            // =================================================
+            // DATA
+            // =================================================
+
             const data = {
 
+                name: name,
 
-                name:
-                    document.getElementById(
-                        "guestName"
-                    ).value,
+                phone: phone,
 
+                reception:
+                    receptionInput.value,
 
-                phone:
-                    document.getElementById(
-                        "guestPhone"
-                    ).value,
+                muhurtham:
+                    muhurthamInput.value,
 
+                guests: guests,
 
-                attendance:
-                    selectedAttendance.value,
+                dietary: dietary,
 
+                reason: reason,
 
-                guests:
-                    document.getElementById(
-                        "guestCount"
-                    ).value,
-
-
-                reason:
-                    document.getElementById(
-                        "reason"
-                    ).value,
-
-
-                message:
-                    document.getElementById(
-                        "guestMessage"
-                    ).value
+                message: message
 
             };
 
+
+
+            // =================================================
+            // DISABLE BUTTON
+            // =================================================
 
             submitButton.disabled =
                 true;
@@ -635,9 +698,14 @@ if (rsvpForm) {
                 "SENDING...";
 
 
-            message.innerText =
+            rsvpMessage.innerText =
                 "";
 
+
+
+            // =================================================
+            // SEND TO FLASK
+            // =================================================
 
             try {
 
@@ -647,17 +715,19 @@ if (rsvpForm) {
                         "/rsvp",
                         {
 
-                            method: "POST",
+                            method:
+                                "POST",
 
-                            headers: {
-
-                                "Content-Type":
-                                    "application/json"
-
-                            },
+                            headers:
+                                {
+                                    "Content-Type":
+                                        "application/json"
+                                },
 
                             body:
-                                JSON.stringify(data)
+                                JSON.stringify(
+                                    data
+                                )
 
                         }
                     );
@@ -667,29 +737,37 @@ if (rsvpForm) {
                     await response.json();
 
 
-                if (result.success) {
+
+                if (
+                    result.success
+                ) {
 
 
-                    message.innerText =
-                        "❤️ Thank you for your response! " +
-                        "We are so happy to hear from you.";
+                    rsvpMessage.innerText =
+                        result.message;
 
+
+                    rsvpMessage.style.color =
+                        "#6b4038";
+
+
+                    // Reset form
 
                     rsvpForm.reset();
-
-
-                    reasonGroup.classList.add(
-                        "hidden"
-                    );
 
 
                 }
 
                 else {
 
-                    message.innerText =
+
+                    rsvpMessage.innerText =
                         result.message ||
-                        "Unable to submit your response.";
+                        "Unable to save your response.";
+
+
+                    rsvpMessage.style.color =
+                        "#9b3d35";
 
                 }
 
@@ -700,15 +778,25 @@ if (rsvpForm) {
 
 
                 console.error(
+                    "RSVP ERROR:",
                     error
                 );
 
 
-                message.innerText =
-                    "Something went wrong. Please try again.";
+                rsvpMessage.innerText =
+                    "Unable to connect to the server. Please try again.";
+
+
+                rsvpMessage.style.color =
+                    "#9b3d35";
 
             }
 
+
+
+            // =================================================
+            // ENABLE BUTTON
+            // =================================================
 
             submitButton.disabled =
                 false;

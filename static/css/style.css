@@ -22,7 +22,7 @@ html {
 
 body {
 
-    background: #f8f1e8;
+    background: #f8f0e7;
 
     color: #30201d;
 
@@ -53,13 +53,11 @@ body {
 
     z-index: 9999;
 
-    min-height: 100vh;
-
     display: flex;
 
-    justify-content: center;
-
     align-items: center;
+
+    justify-content: center;
 
     text-align: center;
 
@@ -69,21 +67,17 @@ body {
 
         radial-gradient(
             circle at center,
-            rgba(126, 65, 55, 0.3),
-            transparent 45%
-        ),
-
-        linear-gradient(
-            135deg,
-            #1e1010,
-            #39201e,
-            #160c0c
+            #56312d 0%,
+            #2c1715 45%,
+            #120908 100%
         );
 
-    color: #fff;
+    color: white;
 
     transition:
+
         opacity 1s ease,
+
         transform 1s ease;
 
 }
@@ -93,7 +87,7 @@ body {
 
     opacity: 0;
 
-    transform: scale(1.08);
+    transform: scale(1.1);
 
     pointer-events: none;
 
@@ -104,18 +98,18 @@ body {
 
     position: relative;
 
-    z-index: 10;
+    z-index: 20;
 
-    width: 90%;
+    width: 92%;
 
-    max-width: 700px;
+    max-width: 750px;
 
 }
 
 
 .opening-small {
 
-    margin-top: 25px;
+    margin-top: 30px;
 
     font-size: 10px;
 
@@ -132,11 +126,11 @@ body {
 
     font-family: 'Great Vibes', cursive;
 
-    font-size: clamp(60px, 10vw, 110px);
+    font-size: clamp(65px, 10vw, 120px);
 
     font-weight: 400;
 
-    line-height: 1;
+    line-height: 0.95;
 
 }
 
@@ -145,9 +139,9 @@ body {
 
     display: block;
 
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Cormorant Garamond';
 
-    font-size: 45px;
+    font-size: 42px;
 
     margin: 10px;
 
@@ -156,17 +150,19 @@ body {
 
 .opening-tagline {
 
-    margin: 30px auto;
-
     max-width: 500px;
 
-    font-family: 'Cormorant Garamond', serif;
+    margin: 30px auto;
+
+    font-family: 'Cormorant Garamond';
 
     font-size: 20px;
 
     font-style: italic;
 
-    opacity: 0.9;
+    line-height: 1.5;
+
+    opacity: 0.85;
 
 }
 
@@ -183,17 +179,16 @@ body {
 
     margin: 25px 0;
 
-    font-size: 15px;
 }
 
 
 .opening-divider span {
 
-    width: 70px;
+    width: 65px;
 
     height: 1px;
 
-    background: rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.45);
 
 }
 
@@ -203,34 +198,27 @@ body {
    LOGO
 ============================================================ */
 
-.logo-container {
-
-    display: flex;
-
-    justify-content: center;
-
-}
-
-
 .logo-ring {
 
     width: 105px;
 
     height: 105px;
 
+    margin: auto;
+
     border-radius: 50%;
 
-    border: 1px solid rgba(255,255,255,0.7);
+    border: 1px solid rgba(255,255,255,0.8);
 
-    outline: 1px solid rgba(255,255,255,0.2);
+    outline: 1px solid rgba(255,255,255,0.25);
 
     outline-offset: 8px;
 
     display: flex;
 
-    justify-content: center;
-
     align-items: center;
+
+    justify-content: center;
 
     position: relative;
 
@@ -243,9 +231,9 @@ body {
 
     position: absolute;
 
-    top: -18px;
+    top: -19px;
 
-    font-size: 14px;
+    font-size: 13px;
 
 }
 
@@ -256,9 +244,9 @@ body {
 
     position: absolute;
 
-    bottom: -18px;
+    bottom: -19px;
 
-    font-size: 14px;
+    font-size: 13px;
 
 }
 
@@ -267,9 +255,9 @@ body {
 
     font-family: 'Cormorant Garamond';
 
-    font-size: 43px;
+    font-size: 42px;
 
-    letter-spacing: 3px;
+    letter-spacing: 4px;
 
 }
 
@@ -302,27 +290,27 @@ body {
 
 .seal {
 
-    width: 90px;
+    width: 92px;
 
-    height: 90px;
+    height: 92px;
 
     border-radius: 50%;
 
     background: #8e4038;
 
-    border: 3px solid #cfa77b;
-
-    box-shadow:
-
-        0 0 0 5px rgba(207,167,123,0.2),
-
-        0 0 35px rgba(207,167,123,0.25);
+    border: 3px solid #d1aa7d;
 
     display: flex;
 
+    align-items: center;
+
     justify-content: center;
 
-    align-items: center;
+    box-shadow:
+
+        0 0 0 5px rgba(209,170,125,0.18),
+
+        0 0 40px rgba(209,170,125,0.25);
 
     transition: 0.4s;
 
@@ -335,7 +323,7 @@ body {
 
     font-size: 28px;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 
 }
 
@@ -344,7 +332,7 @@ body {
 
     margin-top: 18px;
 
-    font-size: 11px;
+    font-size: 10px;
 
     letter-spacing: 4px;
 
@@ -355,9 +343,9 @@ body {
 
     margin-top: 7px;
 
-    font-size: 9px;
+    font-size: 8px;
 
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 
     opacity: 0.6;
 
@@ -366,13 +354,13 @@ body {
 
 .seal-button:hover .seal {
 
-    transform: scale(1.12) rotate(5deg);
+    transform: scale(1.15) rotate(4deg);
 
     box-shadow:
 
-        0 0 0 8px rgba(207,167,123,0.15),
+        0 0 0 9px rgba(209,170,125,0.15),
 
-        0 0 60px rgba(207,167,123,0.4);
+        0 0 70px rgba(209,170,125,0.45);
 
 }
 
@@ -381,7 +369,7 @@ body {
 
     margin-top: 20px;
 
-    font-size: 11px;
+    font-size: 10px;
 
     letter-spacing: 3px;
 
@@ -414,51 +402,42 @@ body {
 
     top: -60px;
 
-    font-size: 20px;
+    z-index: 5;
 
-    opacity: 0.8;
+    animation-name: fall;
 
-    animation:
+    animation-timing-function: linear;
 
-        flowerFall linear forwards,
-
-        flowerSwing ease-in-out infinite alternate;
+    animation-fill-mode: forwards;
 
 }
 
 
-@keyframes flowerFall {
+@keyframes fall {
 
-    from {
+    0% {
 
         transform:
-            translateY(-60px)
+            translateY(-80px)
             rotate(0deg);
+
+        opacity: 0;
 
     }
 
-    to {
+    10% {
+
+        opacity: 0.9;
+
+    }
+
+    100% {
 
         transform:
             translateY(110vh)
             rotate(360deg);
 
-    }
-
-}
-
-
-@keyframes flowerSwing {
-
-    from {
-
-        margin-left: -20px;
-
-    }
-
-    to {
-
-        margin-left: 20px;
+        opacity: 0;
 
     }
 
@@ -472,16 +451,7 @@ body {
 
 .main-invitation {
 
-    opacity: 1;
-
-    transition: 1s;
-
-}
-
-
-.main-invitation.visible {
-
-    display: block;
+    width: 100%;
 
 }
 
@@ -495,8 +465,6 @@ body {
 
     min-height: 100vh;
 
-    position: relative;
-
     display: flex;
 
     align-items: center;
@@ -505,11 +473,13 @@ body {
 
     text-align: center;
 
+    position: relative;
+
     background:
 
         linear-gradient(
-            rgba(30,15,13,0.55),
-            rgba(30,15,13,0.55)
+            rgba(35,17,15,0.58),
+            rgba(35,17,15,0.58)
         ),
 
         url("../images/wedding.jpg");
@@ -523,7 +493,7 @@ body {
 }
 
 
-.hero-overlay {
+.hero-border {
 
     position: absolute;
 
@@ -547,22 +517,24 @@ body {
 
 .hero-small {
 
-    letter-spacing: 5px;
-
     font-size: 10px;
+
+    letter-spacing: 5px;
 
 }
 
 
 .hero-content h2 {
 
+    margin: 30px 0;
+
     font-family: 'Great Vibes';
+
+    font-size: clamp(70px, 11vw, 130px);
 
     font-weight: 400;
 
-    font-size: clamp(65px, 10vw, 120px);
-
-    margin: 25px 0;
+    line-height: 0.9;
 
 }
 
@@ -574,6 +546,8 @@ body {
     font-family: 'Cormorant Garamond';
 
     font-size: 45px;
+
+    margin: 10px;
 
 }
 
@@ -609,7 +583,7 @@ body {
 
 
 /* ============================================================
-   SECTIONS
+   GENERAL SECTIONS
 ============================================================ */
 
 .section {
@@ -627,13 +601,13 @@ body {
 
 .section-label {
 
+    margin-bottom: 20px;
+
     font-size: 10px;
 
     letter-spacing: 5px;
 
-    margin-bottom: 20px;
-
-    opacity: 0.7;
+    opacity: 0.65;
 
 }
 
@@ -642,20 +616,20 @@ body {
 
     font-family: 'Cormorant Garamond';
 
-    font-weight: 500;
+    font-size: clamp(45px, 6vw, 65px);
 
-    font-size: clamp(42px, 6vw, 65px);
+    font-weight: 500;
 
 }
 
 
 .ornament {
 
-    font-size: 35px;
-
     margin: 25px;
 
-    opacity: 0.7;
+    font-size: 35px;
+
+    opacity: 0.65;
 
 }
 
@@ -666,11 +640,11 @@ body {
 
     margin: auto;
 
-    line-height: 2;
-
     font-size: 15px;
 
     font-weight: 300;
+
+    line-height: 2;
 
 }
 
@@ -681,9 +655,9 @@ body {
 
     display: flex;
 
-    justify-content: center;
-
     align-items: center;
+
+    justify-content: center;
 
     gap: 25px;
 
@@ -694,7 +668,7 @@ body {
 
     font-family: 'Great Vibes';
 
-    font-size: 45px;
+    font-size: 48px;
 
 }
 
@@ -704,8 +678,6 @@ body {
     font-family: 'Cormorant Garamond';
 
     font-size: 25px;
-
-
 
 }
 
@@ -717,31 +689,30 @@ body {
 
 .photo-section {
 
-    padding: 60px 20px 100px;
+    padding: 70px 20px 110px;
+
+    background: #eadfd2;
 
     display: flex;
 
     justify-content: center;
-
-    background: #eee4d8;
 
 }
 
 
 .photo-frame {
 
-    position: relative;
-
     width: min(650px, 90vw);
 
     height: 650px;
 
+    position: relative;
+
     overflow: hidden;
 
-    border: 10px solid #f8f1e8;
+    border: 10px solid #f8f0e7;
 
     box-shadow:
-
         0 20px 60px rgba(0,0,0,0.15);
 
 }
@@ -754,6 +725,10 @@ body {
     height: 100%;
 
     object-fit: cover;
+
+    position: relative;
+
+    z-index: 2;
 
 }
 
@@ -770,20 +745,20 @@ body {
 
     justify-content: center;
 
+    background: #d2bca8;
+
     font-family: 'Great Vibes';
 
-    font-size: 90px;
+    font-size: 100px;
 
-    background: #dac6b5;
-
-    z-index: -1;
+    z-index: 1;
 
 }
 
 
 
 /* ============================================================
-   COUNTDOWN
+   COUNTDOWNS
 ============================================================ */
 
 .countdown-section {
@@ -795,18 +770,18 @@ body {
 }
 
 
-.reception-countdown {
+.reception-section {
 
-    background: #3a211e;
+    background: #39211e;
 
     color: white;
 
 }
 
 
-.muhurtham-countdown {
+.muhurtham-section {
 
-    background: #e9ddd0;
+    background: #e8dbcd;
 
     color: #30201d;
 
@@ -817,9 +792,9 @@ body {
 
     font-family: 'Great Vibes';
 
-    font-weight: 400;
+    font-size: 75px;
 
-    font-size: 70px;
+    font-weight: 400;
 
 }
 
@@ -837,9 +812,9 @@ body {
 
 .countdown-time {
 
-    margin-top: 5px;
+    margin-top: 7px;
 
-    font-size: 11px;
+    font-size: 10px;
 
     letter-spacing: 3px;
 
@@ -848,15 +823,17 @@ body {
 
 .countdown {
 
+    margin: 45px 0;
+
     display: flex;
+
+    align-items: center;
 
     justify-content: center;
 
-    flex-wrap: wrap;
-
     gap: 15px;
 
-    margin: 45px 0;
+    flex-wrap: wrap;
 
 }
 
@@ -871,11 +848,11 @@ body {
 
     display: flex;
 
-    flex-direction: column;
+    align-items: center;
 
     justify-content: center;
 
-    align-items: center;
+    flex-direction: column;
 
 }
 
@@ -891,11 +868,11 @@ body {
 
 .countdown-box small {
 
+    margin-top: 5px;
+
     font-size: 8px;
 
     letter-spacing: 2px;
-
-    margin-top: 5px;
 
 }
 
@@ -906,9 +883,9 @@ body {
 
     margin: auto;
 
-    line-height: 1.8;
+    font-size: 13px;
 
-    font-size: 14px;
+    line-height: 1.8;
 
     opacity: 0.8;
 
@@ -922,12 +899,14 @@ body {
 
 .events-section {
 
-    background: #f8f1e8;
+    background: #f8f0e7;
 
 }
 
 
 .events {
+
+    margin-top: 60px;
 
     display: grid;
 
@@ -936,16 +915,14 @@ body {
 
     gap: 30px;
 
-    margin-top: 60px;
-
 }
 
 
 .event-card {
 
-    background: white;
-
     padding: 60px 35px;
+
+    background: white;
 
     border: 1px solid #dfd0c0;
 
@@ -959,7 +936,6 @@ body {
     transform: translateY(-10px);
 
     box-shadow:
-
         0 20px 50px rgba(0,0,0,0.1);
 
 }
@@ -978,7 +954,7 @@ body {
 
     font-family: 'Great Vibes';
 
-    font-size: 48px;
+    font-size: 50px;
 
     font-weight: 400;
 
@@ -987,11 +963,22 @@ body {
 
 .event-date {
 
+    margin-top: 15px;
+
     font-size: 12px;
 
     letter-spacing: 2px;
 
-    margin-top: 15px;
+}
+
+
+.event-time {
+
+    margin-top: 8px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
 
 }
 
@@ -1002,9 +989,9 @@ body {
 
     height: 1px;
 
-    background: #b49a7c;
-
     margin: 25px auto;
+
+    background: #a98b6d;
 
 }
 
@@ -1027,9 +1014,9 @@ body {
 
 .venue-section {
 
-    background: #ded0c1;
-
     max-width: none;
+
+    background: #dfd0c0;
 
 }
 
@@ -1040,9 +1027,9 @@ body {
 
     margin: 50px auto 0;
 
-    background: white;
-
     padding: 60px 30px;
+
+    background: white;
 
 }
 
@@ -1060,16 +1047,18 @@ body {
 
     font-family: 'Cormorant Garamond';
 
-    font-size: 35px;
+    font-size: 36px;
 
 }
 
 
 .venue-card p {
 
+    max-width: 500px;
+
     margin: 20px auto 30px;
 
-    max-width: 500px;
+    font-size: 13px;
 
     line-height: 1.8;
 
@@ -1104,20 +1093,20 @@ body {
 
 .rsvp-section {
 
-    background: #fffaf4;
+    background: #fffaf5;
 
 }
 
 
 .rsvp-intro {
 
-    max-width: 600px;
+    max-width: 650px;
 
-    margin: 25px auto 50px;
-
-    line-height: 1.8;
+    margin: 25px auto 55px;
 
     font-size: 14px;
+
+    line-height: 1.9;
 
     color: #777;
 
@@ -1137,18 +1126,18 @@ body {
 
 .form-group {
 
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 
 }
 
 
-.form-group label {
+.form-group > label {
 
     display: block;
 
     margin-bottom: 10px;
 
-    font-size: 11px;
+    font-size: 10px;
 
     letter-spacing: 2px;
 
@@ -1165,15 +1154,15 @@ textarea {
 
     padding: 16px;
 
-    border: 1px solid #d9cabb;
+    border: 1px solid #d8c8b8;
 
-    background: #fff;
+    outline: none;
+
+    background: white;
 
     font-family: 'Montserrat';
 
     font-size: 13px;
-
-    outline: none;
 
 }
 
@@ -1205,8 +1194,6 @@ textarea {
 
 .attendance-option {
 
-    position: relative;
-
     cursor: pointer;
 
 }
@@ -1214,9 +1201,7 @@ textarea {
 
 .attendance-option input {
 
-    position: absolute;
-
-    opacity: 0;
+    display: none;
 
 }
 
@@ -1227,7 +1212,7 @@ textarea {
 
     padding: 16px;
 
-    border: 1px solid #d9cabb;
+    border: 1px solid #d8c8b8;
 
     background: white;
 
@@ -1240,11 +1225,11 @@ textarea {
 
 .attendance-option input:checked + span {
 
-    background: #3a211e;
+    background: #39211e;
+
+    border-color: #39211e;
 
     color: white;
-
-    border-color: #3a211e;
 
 }
 
@@ -1255,19 +1240,17 @@ textarea {
 
     padding: 18px;
 
-    background: #3a211e;
+    border: none;
+
+    background: #39211e;
 
     color: white;
 
-    border: none;
-
     cursor: pointer;
-
-    letter-spacing: 3px;
 
     font-size: 10px;
 
-    transition: 0.3s;
+    letter-spacing: 3px;
 
 }
 
@@ -1275,6 +1258,15 @@ textarea {
 .submit-button:hover {
 
     background: #8e4038;
+
+}
+
+
+.submit-button:disabled {
+
+    opacity: 0.6;
+
+    cursor: wait;
 
 }
 
@@ -1287,7 +1279,40 @@ textarea {
 
     font-size: 13px;
 
-    line-height: 1.7;
+    line-height: 1.8;
+
+}
+
+
+
+/* ============================================================
+   FLOATING RSVP
+============================================================ */
+
+.floating-rsvp {
+
+    position: fixed;
+
+    right: 20px;
+
+    bottom: 85px;
+
+    z-index: 500;
+
+    padding: 13px 20px;
+
+    background: #8e4038;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.25);
 
 }
 
@@ -1303,11 +1328,13 @@ textarea {
 
     display: flex;
 
-    justify-content: center;
-
     align-items: center;
 
+    justify-content: center;
+
     text-align: center;
+
+    color: white;
 
     background:
 
@@ -1322,32 +1349,30 @@ textarea {
 
     background-position: center;
 
-    color: white;
-
 }
 
 
 .final-logo {
 
-    width: 100px;
+    width: 105px;
 
-    height: 100px;
+    height: 105px;
 
     margin: auto;
 
-    border: 1px solid white;
-
     border-radius: 50%;
+
+    border: 1px solid white;
 
     display: flex;
 
-    justify-content: center;
-
     align-items: center;
+
+    justify-content: center;
 
     font-family: 'Cormorant Garamond';
 
-    font-size: 35px;
+    font-size: 38px;
 
 }
 
@@ -1365,13 +1390,13 @@ textarea {
 
 .final-content h2 {
 
+    margin: 15px;
+
     font-family: 'Great Vibes';
 
-    font-size: 75px;
+    font-size: 80px;
 
     font-weight: 400;
-
-    margin: 15px;
 
 }
 
@@ -1396,29 +1421,7 @@ textarea {
 
 
 /* ============================================================
-   FOOTER
-============================================================ */
-
-footer {
-
-    padding: 25px;
-
-    background: #1b0f0e;
-
-    color: white;
-
-    text-align: center;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-}
-
-
-
-/* ============================================================
-   MUSIC
+   MUSIC BUTTON
 ============================================================ */
 
 .music-button {
@@ -1437,11 +1440,11 @@ footer {
 
     border: 1px solid white;
 
-    background: rgba(30,15,13,0.8);
+    background: rgba(35,17,15,0.85);
 
     color: white;
 
-    z-index: 500;
+    z-index: 600;
 
     cursor: pointer;
 
@@ -1497,9 +1500,9 @@ footer {
 
     .seal {
 
-        width: 75px;
+        width: 78px;
 
-        height: 75px;
+        height: 78px;
 
     }
 
@@ -1560,6 +1563,17 @@ footer {
     .final-content h2 {
 
         font-size: 60px;
+
+    }
+
+
+    .floating-rsvp {
+
+        right: 15px;
+
+        bottom: 80px;
+
+        padding: 12px 17px;
 
     }
 

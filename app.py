@@ -3,6 +3,11 @@ from datetime import datetime
 import json
 import os
 
+
+# ============================================================
+# FLASK APPLICATION
+# ============================================================
+
 app = Flask(__name__)
 
 
@@ -12,26 +17,27 @@ app = Flask(__name__)
 
 WEDDING = {
 
-    # --------------------------------------------------------
+    # ========================================================
     # COUPLE
-    # --------------------------------------------------------
+    # ========================================================
 
-    "bride": "Yash",
-    "groom": "Radhika",
+    "bride": "Radhika",
 
-    "initials": "YR",
+    "groom": "Yash",
 
-    "tagline": "Two hearts, one beautiful journey, forever begins here.",
+    "initials": "RY",
 
-    "intro": (
+    "tagline":
+        "Two hearts, one beautiful journey, forever begins here.",
+
+    "intro":
         "With the blessings of our families and the love of our dear ones, "
-        "we invite you to be a part of our beautiful celebration."
-    ),
+        "we invite you to be a part of our beautiful celebration.",
 
 
-    # --------------------------------------------------------
+    # ========================================================
     # RECEPTION
-    # --------------------------------------------------------
+    # ========================================================
 
     "reception": {
 
@@ -45,16 +51,16 @@ WEDDING = {
 
         "title": "Reception",
 
-        "description": (
-            "Join us for an evening of happiness, laughter, "
+        "description":
+            "Join us for an evening filled with happiness, laughter, "
             "delicious food and beautiful memories."
-        )
+
     },
 
 
-    # --------------------------------------------------------
+    # ========================================================
     # MUHURTHAM
-    # --------------------------------------------------------
+    # ========================================================
 
     "muhurtham": {
 
@@ -68,32 +74,29 @@ WEDDING = {
 
         "title": "Muhurtham",
 
-        "description": (
+        "description":
             "Be with us as we begin our new journey together "
             "with the blessings of our family and loved ones."
-        )
+
     },
 
 
-    # --------------------------------------------------------
+    # ========================================================
     # VENUE
-    # --------------------------------------------------------
+    # ========================================================
 
     "venue": {
 
         "name": "Wedding Venue",
 
-        "address": "Complete Venue Address, Bengaluru, Karnataka",
+        "address":
+            "Complete Venue Address, Bengaluru, Karnataka",
 
-        "map_url": "https://maps.google.com/"
-    },
+        "map_url":
+            "https://maps.google.com/"
 
+    }
 
-    # --------------------------------------------------------
-    # RSVP
-    # --------------------------------------------------------
-
-    "rsvp_enabled": True
 }
 
 
@@ -101,16 +104,41 @@ WEDDING = {
 # RSVP FILE
 # ============================================================
 
+BASE_DIR = os.path.dirname(
+    os.path.abspath(__file__)
+)
+
+
 RSVP_FILE = os.path.join(
-    os.path.dirname(os.path.abspath(__file__)),
+    BASE_DIR,
     "rsvp_data.json"
 )
 
 
-def load_rsvps():
+# ============================================================
+# CREATE RSVP FILE IF IT DOES NOT EXIST
+# ============================================================
 
-    if not os.path.exists(RSVP_FILE):
-        return []
+if not os.path.exists(RSVP_FILE):
+
+    with open(
+        RSVP_FILE,
+        "w",
+        encoding="utf-8"
+    ) as file:
+
+        json.dump(
+            [],
+            file,
+            indent=4
+        )
+
+
+# ============================================================
+# LOAD RSVP DATA
+# ============================================================
+
+def load_rsvps():
 
     try:
 
@@ -120,17 +148,38 @@ def load_rsvps():
             encoding="utf-8"
         ) as file:
 
-            return json.load(file)
+            data = json.load(file)
 
-    except Exception:
+
+        if isinstance(data, list):
+
+            return data
+
 
         return []
 
 
+    except Exception as error:
+
+        print(
+            "ERROR READING RSVP FILE:",
+            error
+        )
+
+        return []
+
+
+# ============================================================
+# SAVE RSVP DATA
+# ============================================================
+
 def save_rsvps(data):
 
+    temp_file = RSVP_FILE + ".tmp"
+
+
     with open(
-        RSVP_FILE,
+        temp_file,
         "w",
         encoding="utf-8"
     ) as file:
@@ -143,8 +192,14 @@ def save_rsvps(data):
         )
 
 
+    os.replace(
+        temp_file,
+        RSVP_FILE
+    )
+
+
 # ============================================================
-# HOME
+# HOME PAGE
 # ============================================================
 
 @app.route("/")
@@ -157,112 +212,276 @@ def home():
 
 
 # ============================================================
-# RSVP
+# SAVE RSVP
 # ============================================================
 
 @app.route(
     "/rsvp",
     methods=["POST"]
 )
-def rsvp():
+def submit_rsvp():
+
+    print()
+    print("=" * 70)
+    print("                    NEW RSVP RECEIVED")
+    print("=" * 70)
+
 
     try:
 
-        data = request.get_json()
-
-        if not data:
-            return jsonify({
-                "success": False,
-                "message": "No RSVP information received."
-            }), 400
-
-
-        name = data.get(
-            "name",
-            ""
-        ).strip()
-
-
-        phone = data.get(
-            "phone",
-            ""
-        ).strip()
-
-
-        attendance = data.get(
-            "attendance",
-            ""
-        ).strip()
-
-
-        guests = data.get(
-            "guests",
-            "1"
+        data = request.get_json(
+            silent=True
         )
 
 
-        reason = data.get(
-            "reason",
-            ""
+        if not data:
+
+            print(
+                "ERROR: No RSVP data received."
+            )
+
+            return jsonify({
+
+                "success": False,
+
+                "message":
+                    "No RSVP information received."
+
+            }), 400
+
+
+        # ====================================================
+        # READ DATA
+        # ====================================================
+
+        name = str(
+            data.get(
+                "name",
+                ""
+            )
         ).strip()
 
 
-        message = data.get(
-            "message",
-            ""
+        phone = str(
+            data.get(
+                "phone",
+                ""
+            )
         ).strip()
 
+
+        reception = str(
+            data.get(
+                "reception",
+                ""
+            )
+        ).strip()
+
+
+        muhurtham = str(
+            data.get(
+                "muhurtham",
+                ""
+            )
+        ).strip()
+
+
+        guests = str(
+            data.get(
+                "guests",
+                "1"
+            )
+        ).strip()
+
+
+        dietary = str(
+            data.get(
+                "dietary",
+                ""
+            )
+        ).strip()
+
+
+        reason = str(
+            data.get(
+                "reason",
+                ""
+            )
+        ).strip()
+
+
+        message = str(
+            data.get(
+                "message",
+                ""
+            )
+        ).strip()
+
+
+        # ====================================================
+        # VALIDATION
+        # ====================================================
 
         if not name:
 
             return jsonify({
+
                 "success": False,
-                "message": "Please enter your name."
+
+                "message":
+                    "Please enter your name."
+
             }), 400
 
 
-        if attendance not in [
+        if reception not in [
             "yes",
             "no",
             "maybe"
         ]:
 
             return jsonify({
+
                 "success": False,
-                "message": "Please select your attendance."
+
+                "message":
+                    "Please select your Reception attendance."
+
             }), 400
 
 
-        # ----------------------------------------------------
-        # Save RSVP
-        # ----------------------------------------------------
+        if muhurtham not in [
+            "yes",
+            "no",
+            "maybe"
+        ]:
+
+            return jsonify({
+
+                "success": False,
+
+                "message":
+                    "Please select your Muhurtham attendance."
+
+            }), 400
+
+
+        # ====================================================
+        # CREATE RSVP RECORD
+        # ====================================================
 
         rsvps = load_rsvps()
 
 
+        new_id = len(rsvps) + 1
+
+
         new_rsvp = {
+
+            "id": new_id,
 
             "name": name,
 
             "phone": phone,
 
-            "attendance": attendance,
+            "reception": reception,
+
+            "muhurtham": muhurtham,
 
             "guests": guests,
+
+            "dietary": dietary,
 
             "reason": reason,
 
             "message": message,
 
-            "submitted_at": datetime.now().isoformat(
-                timespec="seconds"
-            )
+            "submitted_at":
+                datetime.now().strftime(
+                    "%Y-%m-%d %H:%M:%S"
+                )
+
         }
 
 
-        rsvps.append(new_rsvp)
+        # ====================================================
+        # SAVE
+        # ====================================================
 
-        save_rsvps(rsvps)
+        rsvps.append(
+            new_rsvp
+        )
+
+
+        save_rsvps(
+            rsvps
+        )
+
+
+        # ====================================================
+        # PRINT TO TERMINAL
+        # ====================================================
+
+        print()
+
+        print(
+            "RSVP SAVED SUCCESSFULLY"
+        )
+
+        print()
+
+        print(
+            "Name       :",
+            name
+        )
+
+        print(
+            "Phone      :",
+            phone
+        )
+
+        print(
+            "Reception  :",
+            reception
+        )
+
+        print(
+            "Muhurtham  :",
+            muhurtham
+        )
+
+        print(
+            "Guests     :",
+            guests
+        )
+
+        print(
+            "Dietary    :",
+            dietary
+        )
+
+        print(
+            "Reason     :",
+            reason
+        )
+
+        print(
+            "Message    :",
+            message
+        )
+
+        print()
+
+        print(
+            "Saved File :",
+            RSVP_FILE
+        )
+
+        print()
+
+        print(
+            "=" * 70
+        )
 
 
         return jsonify({
@@ -271,28 +490,97 @@ def rsvp():
 
             "message":
                 "Thank you! Your response has been received. ❤️"
+
         })
 
 
     except Exception as error:
 
-        print("RSVP ERROR:", error)
+        print()
+
+        print(
+            "RSVP ERROR:"
+        )
+
+        print(
+            str(error)
+        )
+
+        print()
 
         return jsonify({
 
             "success": False,
 
             "message":
-                "Something went wrong. Please try again."
+                "Unable to save your response."
 
         }), 500
 
 
 # ============================================================
-# RUN
+# VIEW RSVPs
+# ============================================================
+
+@app.route("/rsvps")
+def view_rsvps():
+
+    rsvps = load_rsvps()
+
+
+    return render_template(
+        "rsvps.html",
+        rsvps=rsvps
+    )
+
+
+# ============================================================
+# RUN APPLICATION
 # ============================================================
 
 if __name__ == "__main__":
+
+    print()
+    print("=" * 70)
+    print("              WEDDING INVITATION WEBSITE")
+    print("=" * 70)
+
+    print()
+
+    print(
+        "RSVP FILE:"
+    )
+
+    print(
+        RSVP_FILE
+    )
+
+    print()
+
+    print(
+        "Website:"
+    )
+
+    print(
+        "http://127.0.0.1:5000"
+    )
+
+    print()
+
+    print(
+        "RSVP Dashboard:"
+    )
+
+    print(
+        "http://127.0.0.1:5000/rsvps"
+    )
+
+    print()
+
+    print(
+        "=" * 70
+    )
+
 
     app.run(
         host="0.0.0.0",
